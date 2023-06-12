@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{%static 'style/style.css'%}">
+    <title>Home</title>
+</head>
+<body style="background-color: rgb(0,0,0,0.86);">
+    <div>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <div class="item" style="display: flex;">
+                    <div><a href="{{ product.get_absolute_url }}"><img src="{{ product.image.url }}" width="300px" height="300px"></a></div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>Title</td>
+                                <td>Count</td>
+                                <td>Price</td>
+                                <td>Total</td>
+                                <td>Delete</td>
+                            </tr>
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>${{ item.price }}</td>
+                                <td>${{ item.total_price }}</td>
+                                <td> <p class="lead fw-normal mb-0"><a href="{% url 'cart:cart_remove' product.id%}">Remove</a></p></td>
+                            </tr>
+                        </table>
+                        <p><a href="/">Shop</a></p>
+                    </div>
+                </div>
+            {%endwith%}
+    {%endfor%}
+    </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+body{
+    background-color: rgb(0,0,0,0.86);
+}
+.item{
+    display: flex;
+}
+img{
+    max-width: 300px;
+    max-height: 300px;
+}
